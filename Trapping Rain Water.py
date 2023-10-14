@@ -5,20 +5,27 @@
 
 # define function to take array and return maxmum water
 def maxWater(arr, n):
+    # define storage
     water = 0
     for i in range(1, n - 1):
+        # maximum in left
+        left = arr[i]
+        for j in range(i):
+            left = max(left, arr[j])
 
-        left = i - 1
+        # maximum on right
+        right = arr[i]
+        for j in range(i + 1, n):
+            right = max(right, arr[j])
 
-        right = i + 1
-        
-    water = water + (min(left, right) - arr[i])
+    # feed into our algorithm
+        water = water + (min(left, right) - arr[i])
     return water
 
 
 # Driver code
 if __name__ == "__main__":
-    arr = [2, 0, 2]
+    arr = [3, 0, 0, 2, 0, 4]
     n = len(arr)
 
     print(maxWater(arr, n))
